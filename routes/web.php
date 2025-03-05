@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -56,3 +57,9 @@ Route::post('/refuser',[FreindController::class,'RefuserFreind'])->name('Refuser
 Route::post('/addcomment',[CommentController::class,'store'])->name('addComment');
 
 Route::post('/addLike',[LikeController::class,'store'])->name('addLike');
+
+Route::get("auth/google", [GoogleController::class, "redirectToGoogle"])->name("redirect.google");
+Route::get("auth/google/callback", [GoogleController::class, "handleGoogleCallback"]);
+
+// Route::get("/authenticate/redirect/{social}", \App\Http\Controllers\AuthController::class, 'socialiteRedirect')->name("socialite.redirect");
+// Route::get("/authenticate/callback/{social}", \App\Http\Controllers\AuthController::class, 'callbackSocialite');
