@@ -9,6 +9,7 @@ use App\Http\Controllers\FreindController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\redrecteController;
+use App\Http\Controllers\QrCodeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,3 +57,4 @@ Route::post('/refuser',[FreindController::class,'RefuserFreind'])->name('Refuser
 Route::post('/addcomment',[CommentController::class,'store'])->name('addComment');
 
 Route::post('/addLike',[LikeController::class,'store'])->name('addLike');
+Route::get('/generate-qrcode', [QrCodeController::class, 'generate']);
