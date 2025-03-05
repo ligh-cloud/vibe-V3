@@ -15,7 +15,7 @@ class GoogleController extends Controller
         return Socialite::driver("google")->redirect();
     }
     public function handleGoogleCallback(){
-        $socialUser = Socialite::driver('google')->stateless()->user();
+        $socialUser = Socialite::driver('google')->user();
         $user = User::where('google_id', $socialUser->id)->first();
         if ($user) {
             // User exists with the google_id; log them in.
