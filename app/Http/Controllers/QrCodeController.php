@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -16,9 +17,9 @@ class QrCodeController extends Controller
 //        return response($qrCode)->header('Content-Type', 'image/svg+xml');
 //    }
 
-    public function generate()
+    public function generate(User $user)
     {
-        $qrCode = QrCode::size(300)->generate('Hello, Laravel 11!');
+        $qrCode = QrCode::size(300)->generate(route('qrcode.addFriend', ['user' => $user->id]));
         return view('qrcode', compact('qrCode'));
     }
 }
