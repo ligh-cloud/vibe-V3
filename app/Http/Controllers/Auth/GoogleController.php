@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-// use Auth;
 use Illuminate\Support\Facades\Hash;
 
 class GoogleController extends Controller
