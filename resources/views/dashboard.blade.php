@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-gradient-to-br from-pink-50 to-purple-50 min-h-screen">
+@if (session('success'))
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Succès !</strong>
+        <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Erreur !</strong>
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+@endif
     <!-- Navigation -->
     <nav class="bg-white shadow-md">
         <div class="container mx-auto px-6 py-3">
