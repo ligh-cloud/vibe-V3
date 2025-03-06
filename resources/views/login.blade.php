@@ -52,6 +52,10 @@
                             Mot de passe oublié ?
                         </a>
                     </div>
+                    <button type="submit"
+                        class="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                        Se connecter
+                    </button>
                     <div class="flex flex-col items-center space-y-4">
                         <div class=" w-64">
                             <a title="Login with Google" href="{{ route('redirect.google') }}">
@@ -66,10 +70,7 @@
                         </div>
                     </div>
 
-                    <button type="submit"
-                        class="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
-                        Se connecter
-                    </button>
+                    
                 </form>
 
                 <p class="mt-6 text-center text-sm text-gray-600">
