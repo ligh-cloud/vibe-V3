@@ -6,12 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invitation extends Model
 {
-    //
 
-    protected $fillable = [
-        'id',
-        'sender_id',
-        'receiver_id',
-        'status',
-    ];
+
+    protected $fillable = ['sender_id', 'receiver_id', 'status'];
+
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'sender_id');
+    }
+
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'receiver_id');
+    }
 }

@@ -8,13 +8,13 @@
 </head>
 <body class="min-h-screen bg-gradient-to-br from-pink-100 to-purple-100">
     <div class="container mx-auto px-4 py-8">
-       
+
         <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="px-6 py-8">
             @include('flash-message')
                 <h2 class="text-center text-3xl font-bold text-pink-600 mb-8">Connexion</h2>
-                
-                <form class="space-y-6" action="{{ route('connectionForm')}}" method="Post">
+
+                <form class="space-y-6" action="{{ route('connectionForm')}}" method="post">
                     @csrf
                     <div>
                         <label class="block text-sm font-medium text-purple-700" for="email">

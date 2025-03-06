@@ -1,35 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Writer\PngWriter;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Hashids\Hashids;
 
 class QrCodeController extends Controller
 {
-
-    public function generate()
+    public function generate(User $user)
     {
-        $user = Auth::user(); // Get authenticated user
-        $url = route('friend.request', ['id' => $user->id]);
 
-        // Generate the QR Code
-        $qrCode = Builder::create()
-            ->writer(new PngWriter())
-            ->data($url)
-            ->size(300)
-            ->margin(10)
-            ->build();
+        $user = auth()->user();
+        $hashids = new Hashids('friend-qr-salt', 10);
+        $hashedId = $hashids->encode($user->id);
 
-        // Save QR Code
-        $path = "qrcodes/user_{$user->id}.png";
-        Storage::put("public/$path", $qrCode->getString());
+        $url = URL::temporarySignedRoute(
+            'qrcode.addFriend',
+            now()->addHours(24),
+            ['user' => $hashedId]
+        );
 
-        return response()->json([
-            'qr_code_url' => asset("storage/$path")
-        ]);
+        // Generate the QR code with the signed URL
+        $qrCode = QrCode::size(200)->generate($url);
+
+        return view('qrcode', compact('qrCode'));
     }
-
 }

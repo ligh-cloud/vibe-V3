@@ -18,6 +18,7 @@
                     <a href="/dashboard" class="text-purple-700 hover:text-pink-500">Profil</a>
                     <a href="/Suggestions" class="text-purple-700 hover:text-pink-500">Suggestions</a>
                     <a href="/invitations" class="text-purple-700 hover:text-pink-500">Invitations</a>
+                    <a href="/chatify" class="text-purple-700 hover:text-pink-500">chat</a>
                     <a href="/logout" class="text-purple-700 hover:text-pink-500">Déconnexion</a>
                 </div>
             </div>
