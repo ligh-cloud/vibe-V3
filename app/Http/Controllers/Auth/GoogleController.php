@@ -18,22 +18,17 @@ class GoogleController extends Controller
         $socialUser = Socialite::driver('google')->user();
         $user = User::where('google_id', $socialUser->id)->first();
         if ($user) {
-            // User exists with the google_id; log them in.
             Auth::login($user);
         } else {
-            // Check if a user with the same email exists (duplicate email handling)
             $existingUser = User::where('email', $socialUser->email)->first();
             if ($existingUser) {
-                // Update the existing user with the google_id and log them in.
                 $existingUser->update(['google_id' => $socialUser->id]);
                 Auth::login($existingUser);
             } else {
-                // No user exists with this email; create a new user.
                 $newUser = User::create([
                     'name'      => $socialUser->name,
                     'email'     => $socialUser->email,
                     'google_id' => $socialUser->id,
-                    // Use a random password because Google login doesn't use passwords
                     'password'  => Hash::make(uniqid())
                 ]);
                 Auth::login($newUser);
