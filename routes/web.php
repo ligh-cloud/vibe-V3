@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -9,7 +10,11 @@ use App\Http\Controllers\FreindController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\redrecteController;
+
+use App\Http\Controllers\Auth\FacebookController;
+
 use App\Http\Controllers\QrCodeController;
+
 
 
 Route::get('/', function () {
@@ -58,6 +63,15 @@ Route::post('/refuser',[FreindController::class,'RefuserFreind'])->name('Refuser
 Route::post('/addcomment',[CommentController::class,'store'])->name('addComment');
 
 Route::post('/addLike',[LikeController::class,'store'])->name('addLike');
+
+
+Route::get("auth/google", [GoogleController::class, "redirectToGoogle"])->name("redirect.google");
+Route::get("auth/google/callback", [GoogleController::class, "handleGoogleCallback"]);
+
+Route::get("auth/facebook", [FacebookController::class, "redirectToFacebook"])->name("redirect.facebook");
+Route::get("auth/facebook/callback", [FacebookController::class, "handleFacebookCallback"]);
+
 Route::get('/generate-qrcode', [QrCodeController::class, 'generate']);
 Route::get('/add-friend/{user}', [FreindController::class, 'addFriendFromQr'])
     ->name('qrcode.addFriend');
+
