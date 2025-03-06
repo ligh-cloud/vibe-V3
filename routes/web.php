@@ -71,7 +71,7 @@ Route::get("auth/google/callback", [GoogleController::class, "handleGoogleCallba
 Route::get("auth/facebook", [FacebookController::class, "redirectToFacebook"])->name("redirect.facebook");
 Route::get("auth/facebook/callback", [FacebookController::class, "handleFacebookCallback"]);
 
-Route::get('/generate-qrcode', [QrCodeController::class, 'generate']);
+//Route::get('/generate-qrcode', [QrCodeController::class, 'generate'])->name('generate.qr');
 Route::get('/add-friend/{user}', [FreindController::class, 'addFriendFromQr'])
     ->name('qrcode.addFriend');
 
