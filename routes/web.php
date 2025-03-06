@@ -10,6 +10,7 @@ use App\Http\Controllers\FreindController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\redrecteController;
+use App\Http\Controllers\Auth\FacebookController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,5 +62,5 @@ Route::post('/addLike',[LikeController::class,'store'])->name('addLike');
 Route::get("auth/google", [GoogleController::class, "redirectToGoogle"])->name("redirect.google");
 Route::get("auth/google/callback", [GoogleController::class, "handleGoogleCallback"]);
 
-// Route::get("/authenticate/redirect/{social}", \App\Http\Controllers\AuthController::class, 'socialiteRedirect')->name("socialite.redirect");
-// Route::get("/authenticate/callback/{social}", \App\Http\Controllers\AuthController::class, 'callbackSocialite');
+Route::get("auth/facebook", [FacebookController::class, "redirectToFacebook"])->name("redirect.facebook");
+Route::get("auth/facebook/callback", [FacebookController::class, "handleFacebookCallback"]);
