@@ -25,6 +25,8 @@ class User extends Authenticatable
         'bio',
         'profile_image',
         'pseudo',
+        'google_id',
+        'facebook_id'
     ];
 
     /**
